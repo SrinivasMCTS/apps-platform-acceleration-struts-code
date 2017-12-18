@@ -17,27 +17,46 @@
 */
 package org.superbiz.struts;
 
+import org.springframework.stereotype.Repository;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Stateless
+
+@Repository
 public class UserServiceImpl implements UserService {
 
-    @PersistenceContext(unitName = "user")
+    @PersistenceContext
     private EntityManager manager;
 
     public void add(User user) {
+        System.out.println("add user service..");
         manager.persist(user);
+        System.out.println("add user serive end..");
     }
 
     public User find(int id) {
-        return manager.find(User.class, id);
+        System.out.println("UserServiceImpl action.." + manager);
+        User user = null;
+        try {
+             user = manager.find(User.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        System.out.println("UserServiceImpl action end.." + user);
+        return user;
     }
 
     public List<User> findAll() {
-        return manager.createQuery("select u from User u").getResultList();
+        List<User> users = null;
+        try {
+            users  = manager.createQuery("select u from User u").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+        return users;
     }
 
 }

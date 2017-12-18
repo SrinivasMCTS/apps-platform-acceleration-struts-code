@@ -17,8 +17,11 @@
  */
 package org.superbiz.struts;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,6 +31,14 @@ public class ListAllUsers {
     private String errorMessage;
     private List<User> users;
 
+
+    @Autowired
+    private UserService userService;
+
+
+    public ListAllUsers(UserService userService) {
+        this.userService = userService;
+    }
     public List<User> getUsers() {
         return users;
     }
@@ -55,13 +66,13 @@ public class ListAllUsers {
     public String execute() {
 
         try {
-            UserService service = null;
-            Properties props = new Properties();
-            props.put(Context.INITIAL_CONTEXT_FACTORY,
-                "org.apache.openejb.core.LocalInitialContextFactory");
-            Context ctx = new InitialContext(props);
-            service = (UserService) ctx.lookup("UserServiceImplLocal");
-            this.users = service.findAll();
+//            UserService service = null;
+//            Properties props = new Properties();
+//            props.put(Context.INITIAL_CONTEXT_FACTORY,
+//                "org.apache.openejb.core.LocalInitialContextFactory");
+//            Context ctx = new InitialContext(props);
+//            service = (UserService) ctx.lookup("UserServiceImplLocal");
+            this.users = userService.findAll();
         } catch (Exception e) {
             this.errorMessage = e.getMessage();
             return "failure";

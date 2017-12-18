@@ -17,7 +17,10 @@
 */
 package org.superbiz.struts;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
+
 
 public interface UserService {
 

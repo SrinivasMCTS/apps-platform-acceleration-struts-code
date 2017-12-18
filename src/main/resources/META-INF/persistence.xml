@@ -20,7 +20,7 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
              version="1.0">
-  <!-- Uses HSQLDB which comes bundles with OpenEJB -->
+  <!-- Uses HSQLDB which comes bundles with OpenEJB
   <persistence-unit name="user">
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
     <jta-data-source>java:openejb/Resource/My DataSource</jta-data-source>
@@ -29,7 +29,7 @@
     <properties>
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
     </properties>
-  </persistence-unit>
+  </persistence-unit>-->
 
   <!-- Uncomment the below persistence-unit if you want to use MySql. Make sure to comment out the persistence-unit above first.
        You would need to open <<Tomcat-install>>/conf/openejb.xml and add two Resource elements as shown.
@@ -50,7 +50,7 @@
  </Resource>
 
   -->
-  <!--
+
 <persistence-unit name="user">
   <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
   <jta-data-source>java:openejb/Resource/mysql_managed</jta-data-source>
@@ -61,5 +61,5 @@
   </properties>
 </persistence-unit>
 
-  -->
+
 </persistence>
